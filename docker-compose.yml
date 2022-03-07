@@ -1,0 +1,38 @@
+version: '3.9'
+
+services:
+    router:
+        build: ./Router
+        volumes:
+          - ./Router:/var/Router
+        ports:
+          - "3000:3000"
+        networks:
+          - main-networks
+        restart: always
+        command: npm start
+    service:
+        build: ./Service
+        volumes:
+          - ./Service:/var/Service
+        ports:
+          - "3001:3001"
+        networks:
+          - main-networks
+        restart: always
+        command: npm start
+
+    anotherservice: 
+        build: ./Another Service
+        volumes:
+          - ./Another Service:/var/AnotherService
+        ports:
+          - "3002:3002"
+        networks:
+          - main-networks
+        restart: always
+        command: npm start
+
+networks:
+  main-networks:
+    driver: bridge
